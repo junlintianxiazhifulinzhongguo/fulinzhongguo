@@ -13,3 +13,6 @@ module.exports={
     },
     domainName:'你的域名'
 }
+
+克隆该项目后，需要安装一些中间件，使用 :
+cnpm i
