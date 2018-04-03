@@ -1,0 +1,134 @@
+
+{% extends "../common/layout-home.html" %}
+
+{% block css %}
+<link href="/css/index.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/dplayer/1.22.2/DPlayer.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block sidebar %}
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                首页 <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                电影
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                连续剧
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                图片
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                音频
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                小说
+                </a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2"> 
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">
+                    <a>
+                        <img class="img-circle img-w-50" src="/images/header.png" alt="">
+                    </a>  
+                    <span>李君 / 男 / 27</span>
+                    
+                    <a href=""> 
+                        <i class="fa fa-heart fa-fw" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="card-body" data-cover="http://p4j5ep24o.bkt.clouddn.com/047nQx0kHF5v6KcYaKoCX.jpg"  data-hevideo="http://p4j5ep24o.bkt.clouddn.com/00kCQLo8z1eYJEii3tQPe.mp4" data-hdvideo=""  data-hcvideo="" >
+                    <img class="card-img" src="/images/316895.jpg" alt="Card image">
+                </div>
+                <div class="card-footer text-center"> 2 days ago</div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block modal %}
+<div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content" id="videoModal">
+           
+          </div>
+        </div>
+      </div>
+{% endblock %}
+
+
+
+{% block js %}
+<script src="https://cdn.bootcss.com/dplayer/1.22.2/DPlayer.min.js"></script>
+
+<script>
+        let player=null
+        $(document).ready(function()
+        {
+            $('myModal').on('hidden.bs.modal',function(e){
+                if(player &&player.pause) player.pause();
+            });
+            $('.card-body').click(function(e){
+                let url=$(this).data('hevideo');
+                let pic=$(this).data('cover');
+                $('#myModal').modal('show');
+                if(!player)
+                {
+                    player = new DPlayer({
+                        container: document.getElementById('videoModal'),
+                        screenshot: true,
+                        video: {
+                            url: url,
+                            pic: pic,
+                            thumbnails: pic
+                        } 
+                    });
+                }
+                else
+                {
+                    player.switchVideo({
+                        url:url,
+                        pic:pic,
+                        type:'auto'
+                    })
+                }
+            })
+        })
+    </script>
+
+{% endblock %}
+
+
+
+
+    
+
